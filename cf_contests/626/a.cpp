@@ -80,29 +80,36 @@ template <class D1, class D2> auto lambdamin() { return [](D1 a, D2 b) { return 
 
 ll modExp(ll x, ll y, ll mod) { x %= mod , y %= (mod - 1) ; ll res = 1; while (y) {if (y & 1) res = (res * x) % mod; y /= 2, x = (x * x) % mod; } return res % mod;}
 
-int colorful(int A) 
-{
-    string s = to_string(A);
-    int n = s.size();
-    int pro =1;
-    unordered_map <int, int> map;
-    for(int i=0;i<n;i++){
-        pro = 1;
-        for(int j=i;j<n;j++){
-            pro *= s[j] - '0';
-            cout << pro << endl;
-            map[pro]++;
-            if(map[pro]>1) return 0;
-        }
-    }
-    return 1;
-}
-
 
 int32_t main()
 {
-    int n = 123;
-    unordered_map <int, int> u;
-    cout << u[123] << endl;
     
+    int t;
+    cin>>t;
+    while(t--)
+    {
+    	int n;
+    	cin>>n;
+
+    	invec(v,n);
+    	if(n==1 and v[0]%2==1)
+    	{
+    		cout<<-1<<endl;
+    		continue;
+    	}
+    	for(int i=0; i<n; i++)
+    	{
+    		if(v[i]%2==0){
+    			cout<<1<<endl<<i+1<<endl;
+    			break;
+    		}
+    		else if(i!=0)
+    		{
+    			cout<<2<<endl<<1<<" "<<i+1<<endl;
+    			break;
+    		}
+
+    	}
+
+    }
 }

@@ -70,5 +70,24 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
+    tc(t)
+    {
+	    int n, m;
+	    cin>>n>>m;
+    	
+	    for(int i=0; i<n; i++)
+	    {
+	    	for(int j=0; j<m; j++)
+	    	{
+	    		if(i==n-1 and j==m-1)
+	    			cout<<"B";
+	    		else if(j==m-1)
+	    			cout<<"W";
+	    		else
+	    			cout<<"B";
+	    	}
+	    	cout<<endl;
+	    }
+    }
   
 }

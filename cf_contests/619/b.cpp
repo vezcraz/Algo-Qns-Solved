@@ -61,14 +61,79 @@ string sep = "-----------------------------\n";
 string sep = "" ;
 #endif
 template <class T> ostream &operator <<(ostream &os, const vector<T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class T> ostream &operator <<(ostream &os, const unordered_set<T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class T> ostream &operator <<(ostream &os, const set<T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class T> ostream &operator <<(ostream &os, const multiset<T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class S, class T> ostream &operator <<(ostream &os, const pair<S, T> &p) {return os << "(" << p.first << ", " << p.second << ")"; } template <class S, class T> ostream &operator <<(ostream &os, const unordered_map<S, T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class S, class T> ostream &operator <<(ostream &os, const map<S, T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class T> void dbs(string str, T t) {cerr << str << " : " << t << "\n"; } template <class T, class... S> void dbs(string str, T t, S... s) {int idx = str.find(','); cerr << str.substr(0, idx) << " : " << t << ", "; dbs(str.substr(idx + 1), s...); } template <class T> T mx(T t) {return t; } template <class T, class... S> T mx(T t, S... s) {T tt = mx(s...); return (t) > (tt) ? (t) : (tt); } template <class T> T mn(T t) {return t; } template <class T, class... S> T mn(T t, S... s) {T tt = mn(s...); return (t) < (tt) ? (t) : (tt); } template <class T, class Op> T acc(Op op, T t) {return t; } template <class T, class Op, class... S> T acc(Op op, T t, S... s) {return op(t, acc(op, s...)); } template <class D1, class D2> auto lambdamax() {return [](D1 a, D2 b) {return (a) > (b) ? (a) : (b) ; } ; } template <class D1, class D2> auto lambdamin() {return [](D1 a, D2 b) {return (a) < (b) ? (a) : (b) ; } ; } ll modExp(ll x, ll y, ll mod) {x %= mod, y %= (mod - 1) ; ll res = 1; while (y) {if (y & 1) res = (res * x) % mod; y /= 2, x = (x * x) % mod; } return res % mod; }
-
+void output(int m, int k)
+{
+	cout<<m<<" "<<k<<endl;
+}
 int32_t main()
 {
     ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
     #ifndef ONLINE_JUDGE 
         freopen("../input.txt", "r", stdin); 
-        freopen("../output.txt", "w", stderr); 
-        freopen("../output.txt", "a", stdout); 
+        // freopen("../output.txt", "w", stderr); 
+        freopen("../output.txt", "w", stdout); 
     #endif 
-  
+  	tc(t)
+  	{
+  		int n;
+  		cin>>n;
+  		invec(v,n);
+  		vi pos;
+  		for(int i=0; i<n; i++)
+  			if(v[i]!=-1)
+  				pos.pb(i);
+  		
+  		vector<float> diff;
+  		for(int i=0; i<sz(pos)-1; i++)
+  		{
+  			if(pos[i]+1==pos[i+1])
+	  			diff.pb((float)abs(v[pos[i+1]]-v[pos[i]]));
+  			else
+	  			diff.pb((float)abs(v[pos[i+1]]-v[pos[i]])/(float)2);
+  		}
+  		// pr(pos);
+  		pr(diff);
+  		int s=sz(diff);
+  		if(s==0)
+  			output(0,0);
+  		else if(sz(pos)==n)
+  			output(*maxof(diff),0);
+  		else
+  		{
+  			int m=ceil(*maxof(diff));
+  			int a,b;
+  			for(int i=0; i<sz(pos)-1; i++)
+	  		{
+	  			int temp;
+	  			if((pos[i]+1)!=pos[i+1])
+		  			temp=ceil((float)abs(v[pos[i+1]]-v[pos[i]])/(float)2);
+		  		else
+		  			temp=ceil((float)abs(v[pos[i+1]]-v[pos[i]]));
+		  		if(temp==m){
+		  			if(pos[i]+1==pos[i+1])
+		  			{
+		  				for(int j=0; j<sz(pos)-1; j++)
+		  				{
+		  					if(pos[j+1]!=pos[j]+1)
+		  					{
+		  						a=pos[j];
+		  						b=pos[j+1];
+		  					}
+
+		  				}
+		  			}
+		  			else{	
+			  			a=pos[i];
+			  			b=pos[i+1];
+			  		}
+		  			break;
+		  		}
+	  		}
+	  		// output(a,b);
+	  		output(m,min(v[a],v[b])+abs(v[b]-v[a])/2);
+	  		// cout<<endl;
+
+  		}
+  		
+  	}
 }

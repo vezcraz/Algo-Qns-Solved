@@ -70,5 +70,24 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+  	int n;
+    cin>>n;
+    invec(v,n);
+    bool flag=0;
+    for(int i=0; i<n; i++)
+    {
+        if(v[i]%2==0)
+            cout<<v[i]/2<<endl;
+        else
+        {
+            float ans= (float)(v[i])/(float)(2);
+            if(flag)
+            {
+               cout<<(int)(floor(ans))<<endl;
+            }
+            else
+                cout<<(int)(ceil(ans))<<endl;
+            flag=!flag;
+        }
+    }
 }

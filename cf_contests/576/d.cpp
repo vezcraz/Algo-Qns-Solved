@@ -70,5 +70,52 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
+    int n;
+    cin>>n;
+    invec(v,n);
+    vector<pair<int,int>> a;
+    int q;
+    cin>>q;
+    max_val=0;
+    int mode=1;
+    map<int,int> m;
+    for(int i=0; i<q; i++)
+    {
+        int option;
+        cin>>option;
+        if(option==1)
+        {
+            if(mode==2)
+                max_val=0;
+            mode=1;
+            int val;
+            cin>>val;
+            max_val=max(max_val,val);
+        }
+        if(option==2)
+        {
+            int p,x;
+            cin>>p>>x;
+            v[p]=x;
+            m[i]=p;
+            a.pb({i-1, max_val});
+            mode=2;
+        }
+    }
+    if(mode==1)
+        a.pb({q, max_val});
+    a.pb({q,0});
+    for(int i=a.size()-1; i>=1; i--)
+    {
+        int index=a[i].first;
+        int val=a[i].second;
+
+        for(int j=a[i-1].first+1; j<index; i++)
+        {
+            if(m[j])
+                v[m[j]]=max(val,v[m[j]]);
+        }
+
+    }
   
 }

@@ -70,5 +70,45 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
+    int n, space, sum, min_sum;
+    cin>>n>>space;
+    invec(v,n);
+    int k= (int)(floor((double)(8*space)/(double)n));
+    k=k>20?20:k;
+    int max_distinct=pow(2,k);
+    pr(max_distinct);
+    map<int,int> m;
+    for(int i=0; i<n; i++)
+        m[v[i]]++;
+    set<int> temp= set<int>(all(v));
+    v={};
+    for(int x: temp)
+        v.pb(x);
+    
+    if(max_distinct>=temp.size())
+    {
+        cout<<0;
+        goto done;
+    }
+    sum=0;
+    for(auto p: m)
+        sum+=p.second;
+    for(int i=0; i<max_distinct; i++)
+        sum -= m[v[i]];
+    pr(m,sum);
+    min_sum=sum;
+    for(int i=1, j=max_distinct; j<v.size(); i++, j++)
+    {
+        int l=v[i-1];
+        int r=v[j];
+        sum=sum+m[l]-m[r];
+        pr(sum);
+        min_sum=min(min_sum, sum);
+
+    }
+    cout<<min_sum;
+
+    done:
+    {}
   
 }

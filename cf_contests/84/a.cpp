@@ -70,5 +70,22 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+  	tc(t)
+  	{
+  		int n, k;
+  		cin>>n>>k;
+  		n=n-k;
+  		if(n%2==0)
+  		{
+  			int x=k*(k-1);
+  			if(n>=x)
+  				cout<<"YES"<<endl;
+  			else
+  				goto no;
+
+  		}
+  		else
+  		no:
+  			cout<<"NO"<<endl;
+  	}
 }

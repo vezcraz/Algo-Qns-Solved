@@ -70,5 +70,37 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+    
+    tc(t)
+    {
+        int n, m;
+        cin>>n>>m;
+        string s;
+        cin>>s;
+        invec(v,m);
+        sort(all(v));
+        // pr(v);
+        map<char,int> dict;
+        int pointer=0;
+
+        for(int j=0; j<m;j++)
+        {
+
+            for(int i=pointer; i<v[j]; i++)
+            {
+                dict[s[i]]+=m-j;
+                pointer++;
+            }
+            // pr(dict);
+
+        }
+        // pr(pointer);
+        for(int i=0; i<n;i++)
+        {
+            dict[s[i]]++;
+        }
+        for(int i='a'; i<='z'; i++)
+            cout<<dict[i]<<" ";
+        cout<<endl;
+    }
 }

@@ -62,6 +62,7 @@ string sep = "" ;
 #endif
 template <class T> ostream &operator <<(ostream &os, const vector<T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class T> ostream &operator <<(ostream &os, const unordered_set<T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class T> ostream &operator <<(ostream &os, const set<T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class T> ostream &operator <<(ostream &os, const multiset<T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class S, class T> ostream &operator <<(ostream &os, const pair<S, T> &p) {return os << "(" << p.first << ", " << p.second << ")"; } template <class S, class T> ostream &operator <<(ostream &os, const unordered_map<S, T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class S, class T> ostream &operator <<(ostream &os, const map<S, T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class T> void dbs(string str, T t) {cerr << str << " : " << t << "\n"; } template <class T, class... S> void dbs(string str, T t, S... s) {int idx = str.find(','); cerr << str.substr(0, idx) << " : " << t << ", "; dbs(str.substr(idx + 1), s...); } template <class T> T mx(T t) {return t; } template <class T, class... S> T mx(T t, S... s) {T tt = mx(s...); return (t) > (tt) ? (t) : (tt); } template <class T> T mn(T t) {return t; } template <class T, class... S> T mn(T t, S... s) {T tt = mn(s...); return (t) < (tt) ? (t) : (tt); } template <class T, class Op> T acc(Op op, T t) {return t; } template <class T, class Op, class... S> T acc(Op op, T t, S... s) {return op(t, acc(op, s...)); } template <class D1, class D2> auto lambdamax() {return [](D1 a, D2 b) {return (a) > (b) ? (a) : (b) ; } ; } template <class D1, class D2> auto lambdamin() {return [](D1 a, D2 b) {return (a) < (b) ? (a) : (b) ; } ; } ll modExp(ll x, ll y, ll mod) {x %= mod, y %= (mod - 1) ; ll res = 1; while (y) {if (y & 1) res = (res * x) % mod; y /= 2, x = (x * x) % mod; } return res % mod; }
 
+
 int32_t main()
 {
     ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
@@ -71,4 +72,29 @@ int32_t main()
         freopen("../output.txt", "a", stdout); 
     #endif 
   
+  	int n;
+  	cin>>n;
+  	invec(a,n);
+  	invec(b,n);
+  	vi ab, ba;
+  	for(int i=0; i<n; i++)
+  	{
+  		ab.pb(a[i]-b[i]);
+  		ba.pb(-a[i]+b[i]);
+  	}
+  	sort(all(ab));
+  	int sum=0;
+  	pr(ab,ba);
+  	
+  	for(int i=0; i<n; i++)
+  	{
+  		int x=ab.end()-lower_bound(all(ab), ba[i]);
+  		if(x!=0 ){
+  			sum+=x-1;
+  			if(*lower_bound(all(ab),ba[i])>0)
+  				sum++;
+  		}
+  		ab[i]=-INT_MAX;
+  		pr(sum);
+  	}
 }

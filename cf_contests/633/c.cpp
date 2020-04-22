@@ -70,5 +70,27 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+  	tc(t)
+    {
+        int n;
+        cin>>n;
+        invec(v,n);
+        int mx=INT_MIN;
+        int time=0;
+        for(int i=0; i<n; i++)
+        {
+            if(v[i]<mx)
+                time=max(time,mx-v[i]);
+            mx=max(v[i],mx);
+
+        }
+        int k=0;
+        for(int i=0; i<=32; i++)
+            if(pow(2,i)>time){
+                k=i;
+                break;
+            }
+        cout<<k<<endl;
+    }
+
 }

@@ -70,5 +70,44 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
+
+    int n;
+    cin>>n;
+    string s;
+    cin>>s;
+    vector<char> v;
+    
+    if(n%2!=0){
+        cout<<-1;
+        return 0;
+    }
+    int count = 0;
+    int mark = -1;
+    for(int i=0; i<n; i++)
+    {
+        if(v.empty()){
+            v.pb(s[i]);
+            mark++;
+            continue;
+        }
+        if(s[i]==v[mark])
+        {
+            v.pb(s[i]);
+            mark++;
+        }
+        else
+        {
+            v.pop_back();
+            mark--;
+            if(s[i]=='(')
+                count+=2;
+           
+        }
+    }
+    if(v.empty())
+    cout<<count;
+    else
+        cout<<-1;
+
   
 }

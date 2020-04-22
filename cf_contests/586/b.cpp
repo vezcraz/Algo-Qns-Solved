@@ -70,5 +70,50 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+    int n;
+    cin>>n;
+    vector<vi> v(n);
+    for(int i=0; i<n;i++)
+        for(int j=0; j<n; j++)
+            {
+                int x;
+                cin>>x;
+                
+                v[i].pb(x);
+            }
+       
+    vi ans;
+    for(int i=0; i<n; i++)
+    {
+        
+        if(i==0)
+        {
+            int l=v[i][1];
+            int r=v[i][2];
+            int div=v[1][2];
+            int node = sqrt(l*r/div);
+            ans.pb(node);
+
+        }
+        else if(i==1)
+        {
+            int l=v[i][0];
+            int r=v[i][2];
+            int div=v[0][2];
+            int node = sqrt(l*r/div);
+            ans.pb(node);
+        }
+
+        else
+        {
+            int l=v[i][0];
+            int r=v[i][1];
+            int div=v[0][1];
+            int node = sqrt(l*r/div);
+            ans.pb(node);
+        }
+    }
+    for(int i=0; i<sz(ans);i++)
+        cout<<ans[i]<<" ";
+    
 }

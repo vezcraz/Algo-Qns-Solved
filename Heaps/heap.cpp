@@ -61,7 +61,47 @@ string sep = "-----------------------------\n";
 string sep = "" ;
 #endif
 template <class T> ostream &operator <<(ostream &os, const vector<T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class T> ostream &operator <<(ostream &os, const unordered_set<T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class T> ostream &operator <<(ostream &os, const set<T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class T> ostream &operator <<(ostream &os, const multiset<T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class S, class T> ostream &operator <<(ostream &os, const pair<S, T> &p) {return os << "(" << p.first << ", " << p.second << ")"; } template <class S, class T> ostream &operator <<(ostream &os, const unordered_map<S, T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class S, class T> ostream &operator <<(ostream &os, const map<S, T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class T> void dbs(string str, T t) {cerr << str << " : " << t << "\n"; } template <class T, class... S> void dbs(string str, T t, S... s) {int idx = str.find(','); cerr << str.substr(0, idx) << " : " << t << ", "; dbs(str.substr(idx + 1), s...); } template <class T> T mx(T t) {return t; } template <class T, class... S> T mx(T t, S... s) {T tt = mx(s...); return (t) > (tt) ? (t) : (tt); } template <class T> T mn(T t) {return t; } template <class T, class... S> T mn(T t, S... s) {T tt = mn(s...); return (t) < (tt) ? (t) : (tt); } template <class T, class Op> T acc(Op op, T t) {return t; } template <class T, class Op, class... S> T acc(Op op, T t, S... s) {return op(t, acc(op, s...)); } template <class D1, class D2> auto lambdamax() {return [](D1 a, D2 b) {return (a) > (b) ? (a) : (b) ; } ; } template <class D1, class D2> auto lambdamin() {return [](D1 a, D2 b) {return (a) < (b) ? (a) : (b) ; } ; } ll modExp(ll x, ll y, ll mod) {x %= mod, y %= (mod - 1) ; ll res = 1; while (y) {if (y & 1) res = (res * x) % mod; y /= 2, x = (x * x) % mod; } return res % mod; }
+void swap(int &a, int &b)
+{
+	int temp=a;
+	a=b;
+	b=temp;
+}
+void maxHeapify(vi &v, int i,int n)
+{
 
+	if(i>n/2)
+		return;
+	int left=v[2*i];
+	int right=INT_MIN;
+	if(2*i+1<=n)
+	right=v[2*i+1];
+	int index= left>=right?(2*i):(1+2*i);
+	if(v[i]<v[index])
+	{
+		swap(v[i],v[index]);
+		maxHeapify(v,index,n);
+	}
+	return;
+
+}
+void buildHeap(vi &v)
+{
+	int n=v.size()-1;
+    for(int i=n/2; i>=1; i--)
+    	maxHeapify(v,i,n);
+
+}
+
+void heapSort(vi &ans,vi &v, int n)
+{
+	if(n<=0)
+		return;
+	ans.pb(v[1]);
+	swap(v[1],v[n]);
+	maxHeapify(v,1,n-1);
+	heapSort(ans,v,n-1);
+}
 int32_t main()
 {
     ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
@@ -70,5 +110,16 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+    int n;
+    cin>>n;
+    vi v(n+1);
+    
+    for(int i=1; i<=n; i++)
+    	cin>>v[i];
+    pr(v);
+    buildHeap(v);
+    pr(v);
+    vi ans;
+    heapSort(ans,v,n);
+    pr(ans);
 }

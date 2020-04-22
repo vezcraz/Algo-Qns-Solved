@@ -70,5 +70,26 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+    tc(t)
+    {
+    	string a,b,c;
+    	cin>>a>>b>>c;
+    	int n=sz(a);
+    	vector<int> v;
+    	for(int i=0; i<n; i++)
+    	{
+    		if(a[i]==c[i] or b[i]==c[i])
+    			v.pb(i);
+    	}
+    	
+    	if(sz(v)==n)
+    		goto yes;
+    	no:
+    		cout<<"NO";
+    		goto done;
+    	yes:
+    		cout<<"YES";
+    	done:
+    		cout<<endl;
+    }
 }

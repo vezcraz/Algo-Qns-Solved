@@ -70,5 +70,26 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+  	int n;
+    cin>>n; 
+    invec(a,n);
+    invec(b,n);
+    map<int,int> m;
+    for(int i=0; i<n; i++)
+        m[b[i]]=i;
+    int start=0;
+    int fine=0;
+
+    for(int i=0; i<n; i++)
+    {
+        int car=a[i];
+        if(start<=m[car])
+        {
+            fine+=m[car]-start;
+            start=m[car]+1;
+        }
+        pr(start);
+
+    }
+    cout<<fine;
 }

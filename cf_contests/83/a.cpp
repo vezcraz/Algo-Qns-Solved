@@ -70,5 +70,17 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
+
+    int t;
+    cin>>t;
+    while(t--)
+    {
+    	int n, m;
+    	cin>>n>>m;
+    	if(n%m==0)
+    		cout<<"YES"<<endl;
+    	else
+    		cout<<"NO"<<endl;
+    }
   
 }

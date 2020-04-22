@@ -62,6 +62,11 @@ string sep = "" ;
 #endif
 template <class T> ostream &operator <<(ostream &os, const vector<T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class T> ostream &operator <<(ostream &os, const unordered_set<T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class T> ostream &operator <<(ostream &os, const set<T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class T> ostream &operator <<(ostream &os, const multiset<T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class S, class T> ostream &operator <<(ostream &os, const pair<S, T> &p) {return os << "(" << p.first << ", " << p.second << ")"; } template <class S, class T> ostream &operator <<(ostream &os, const unordered_map<S, T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class S, class T> ostream &operator <<(ostream &os, const map<S, T> &p) {os << "[ "; for (auto &it : p) os << it << " "; return os << "]"; } template <class T> void dbs(string str, T t) {cerr << str << " : " << t << "\n"; } template <class T, class... S> void dbs(string str, T t, S... s) {int idx = str.find(','); cerr << str.substr(0, idx) << " : " << t << ", "; dbs(str.substr(idx + 1), s...); } template <class T> T mx(T t) {return t; } template <class T, class... S> T mx(T t, S... s) {T tt = mx(s...); return (t) > (tt) ? (t) : (tt); } template <class T> T mn(T t) {return t; } template <class T, class... S> T mn(T t, S... s) {T tt = mn(s...); return (t) < (tt) ? (t) : (tt); } template <class T, class Op> T acc(Op op, T t) {return t; } template <class T, class Op, class... S> T acc(Op op, T t, S... s) {return op(t, acc(op, s...)); } template <class D1, class D2> auto lambdamax() {return [](D1 a, D2 b) {return (a) > (b) ? (a) : (b) ; } ; } template <class D1, class D2> auto lambdamin() {return [](D1 a, D2 b) {return (a) < (b) ? (a) : (b) ; } ; } ll modExp(ll x, ll y, ll mod) {x %= mod, y %= (mod - 1) ; ll res = 1; while (y) {if (y & 1) res = (res * x) % mod; y /= 2, x = (x * x) % mod; } return res % mod; }
 
+bool isequal(bool a, bool b, bool temp, bool cout, bool xorval)
+{
+    return (cout==((a and b)or temp) ) and (xorval==a xor b);
+}
+
 int32_t main()
 {
     ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
@@ -70,5 +75,37 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+    int u, v;
+    cin>>u>>v;
+    bitset<64> axorb(u);
+    bitset<64> sum(v);
+    if(u%2!=v%2){
+        cout<<-1;
+        return 0;
+    }
+    int c;
+    c=u^v;
+    bitset<65> cin(c);
+    pr(axorb,sum,cin);
+    bitset<64> a(0);
+    bitset<64> b(0);
+    for(int i=0;i<64; i++)
+    {
+        bool xorval=axorb[i];
+        bool temp=cin[i] and (axorb[i]);
+        bool cout=cin[i+1];
+        vector<pair<int,int>> k={{0,0}, {0,1}, {1,0}, {1,1}};
+        for(pair<int,int> ab: k)
+        {
+            if(isequal(ab.first,ab.second,temp,cout,xorval))
+            {
+                a[i]=ab.first;
+                b[i]=ab.second;
+                break;
+            }
+        }
+
+    }
+    pr(a,b);
+
 }

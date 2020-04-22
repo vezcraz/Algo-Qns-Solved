@@ -69,6 +69,20 @@ int32_t main()
         freopen("../input.txt", "r", stdin); 
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
-    #endif 
-  
+    #endif
+    int n, m;
+    cin>>n>>m;
+    invec(v,m);
+    vi a;
+    // for(int i=n, j=0; i>=1; i--, j++) 
+  		// a[j]=i;
+  	sort(all(v));
+  	int pointer=1;;
+  	for(int i=0; i<m; i++)
+  	{
+  		int reach=v[i+1];
+  		
+  	}
+  	if(pointer)
+
 }

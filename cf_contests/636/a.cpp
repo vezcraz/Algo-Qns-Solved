@@ -70,5 +70,25 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
+    int t;
+    cin>>t;
+
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        // cout<<n;
+        for(int i=2; i<=64; i++)
+        {
+            int div=pow(2,i)-1;
+            if(n%div==0)
+            {
+                cout<<n/div<<endl;
+                goto done;
+            }
+        }
+        done:
+            continue;
+    }
   
 }

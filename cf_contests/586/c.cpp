@@ -70,5 +70,32 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
+    string s;
+    cin>>s;
+    map<char, vector<int> > m;
+    for(int i=0; i<sz(s); i++)
+    {
+    	m[s[i]].pb(i);
+    }
+    pr(m);
+    int n=sz(s);
+    for(int i=0; i<n; i++)
+    {
+    	int l=i, r=i;
+    	char curr=s[i];
+    	for(char j='a'; j<curr; j++)
+    	{
+    		auto itr=lower_bound(all(m[j]),i);
+    		int index = itr-m[j].begin();
+    		if(index!=0 )
+	    		goto ann;
+    	}
+    mike:
+    	cout<<"Mike"<<endl;
+    	continue;
+    ann:
+    	cout<<"Ann"<<endl;
+
+    }
   
 }

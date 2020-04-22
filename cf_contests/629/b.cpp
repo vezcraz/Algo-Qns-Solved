@@ -70,5 +70,32 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
+    tc(t)
+    {
+    	int n, k;
+    	cin>>n>>k;
+
+    	int a,b;
+    	for(int i=1; i<n; i++)
+    	{
+    		if(k<=i*(i+1)/2){
+    			a=i;
+				break;    			
+    		}
+    	}
+    	// cout<<a<<endl;
+    	b=-a*(a-1)/2 + k;
+    	// cout<<b<<endl;
+    	// pr(b);
+    	for(int i=1; i<=n; i++)
+    	{
+    		if(i==n-a or i==n-b+1)
+    			cout<<'b';
+    		else
+    			cout<<'a';
+    	}
+    	cout<<endl;
+
+    }
   
 }

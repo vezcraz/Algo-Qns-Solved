@@ -70,5 +70,37 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
+    tc(t)
+    {
+    	int d, m;
+    	cin>>d>>m;
+
+    	int temp=d;
+    	int hi=0;
+
+    	while(temp!=0)
+    		temp=temp>>1, hi++;
+    	// pr(hi);
+    	int lower=hi-1;
+    	int ans=1;
+    	int debug=1;
+    	for(int i=0; i<lower; i++)
+    	{
+    		int l=ans%m;
+    		int r= (1+pow(2,i));
+    		// debug=debug*r;
+    		r=r%m;
+    		// pr(l,r);
+    		ans=(l*r)%m;
+    		// pr(debug);
+    		// pr(ans);
+    	}
+    	int l=ans;
+    	int r=1+(d-pow(2,lower)+1);
+    	r=r%m;
+    	cout<<(((l*r) -1+m)%m + m)%m<<endl;
+    	// pr(debug*r-1);
+
+    }
   
 }

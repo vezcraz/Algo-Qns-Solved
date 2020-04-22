@@ -70,5 +70,34 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+    int t;
+    cin>>t;
+    while(t--)
+    {
+    	int n; 
+    	bool flag=0;
+    	cin>>n;
+    	invec(v,n);
+    	map<int,int> m;
+    	m[v[0]]++;
+    	for(int i=1; i<n; i++)
+    	{
+    		if(v[i]!=v[i-1]){
+    			m[v[i]]++;
+            }
+            else
+                v[i]=-1;
+    		if(m[v[i]]==2)
+    		{
+    			flag=1;
+    			break;
+    		}
+    	}
+    	if(flag)
+    		cout<<"YES";
+    	else
+    		cout<<"NO";
+    	cout<<endl;
+
+    }
 }

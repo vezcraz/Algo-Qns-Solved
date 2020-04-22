@@ -70,5 +70,20 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+    tc(t)
+    {
+    	int n;
+    	cin>>n;
+    	if(n==1){
+    		cout<<-1<<endl;
+    		continue;
+    	}
+    	string s;
+    	for(int i=0; i<n-1; i++)
+    		s.pb('3');
+    	s.pb('4');
+    	cout<<s<<endl;
+    }
+
+
 }

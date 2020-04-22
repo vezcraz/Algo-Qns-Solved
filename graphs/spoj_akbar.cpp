@@ -67,8 +67,80 @@ int32_t main()
     ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
     #ifndef ONLINE_JUDGE 
         freopen("../input.txt", "r", stdin); 
-        freopen("../output.txt", "w", stderr); 
-        freopen("../output.txt", "a", stdout); 
-    #endif 
+        // freopen("../output.txt", "w", stderr); 
+        freopen("../output.txt", "w", stdout); 
+    #endif
+
+    tc(t)
+    {
+    	int n, r, m;
+    	cin>>n>>r>>m;
+    	vec<vi> g(n+1,vi());
+    	for(int i=0; i<r; i++)
+    	{
+    		int x,y;
+    		cin>>x>>y;
+    		g[x].pb(y);
+    		g[y].pb(x);
+    	}
+    	// cout<<g;
+    	vec<pii> guarded;
+    	for(int i=0; i<m ;i++)
+    	{
+    		int x,y;
+    		cin>>x>>y;
+    		guarded.pb({x,y});
+    	}
+    	// pr(g,guarded);
+    	map<int,int> protect;
+    	for(int i=0; i<m; i++)
+    	{
+    		int start=guarded[i].first;
+    		int power=guarded[i].second;
+    		// pr(protect);
+    		queue<pii> q;
+    		q.push({start,power});
+    		map<int,int> visited;
+    		visited[start]=1;
+    		while(!q.empty())
+    		{
+    			int city=q.front().first;
+    			int pwr=q.front().second;
+    			// pr(city,pwr);
+    			if(pwr>=0)
+    				if(protect[city])
+    					goto no;
+    				else 
+	    				protect[city]=start;
+    			else
+    				break;
+    			if(pwr>0)
+    			{
+    				// pr(g[city]);
+	    			for(auto c: g[city])
+	    			{
+	    				if(!visited[c]){
+	    					q.push({c,pwr-1});
+	    					visited[c]=1;
+	    				}
+	    			}
+
+    			}
+    			q.pop();
+    		}
+
+
+    	}
+    	if(protect.size()==n)
+    		goto yes;
+    	else
+    		goto no;
+    	yes:
+    		cout<<"Yes"<<endl;
+    		continue;
+    	no:
+    		cout<<"No"<<endl;
+    		continue;
+    } 
   
 }

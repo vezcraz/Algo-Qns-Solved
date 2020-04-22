@@ -70,5 +70,45 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
+  	int n;
+  	cin>>n;
+  	invec(v,n);
+  	map<int,pair<int,int>> m;
+  	int count=0, sum=0;
+  	vi prefix;
+  	for(int i=0; i<n; i++)
+  	{
+  		sum+=v[i];
+  		prefix.pb(sum);
+
+  	}
+  	pr(prefix);
+  	int start=0;
+  	int x=0;
+  	for(int i=0; i<n; i++)
+  	{
+  		int el=prefix[i]-x;
+  		if(el==0)
+  		{
+  			count+=(n-start)-(i-start);
+  			start++;
+  		}
+  		else if(m[el].first)
+  		{
+  			int pos=m[el].second;
+  			count+=(n-start)-(i-start);
+  			x=prefix[i];
+  			for(int j=start; j<=pos; j++)
+  				m.erase(prefix[j]);
+  			start=pos+1;
+  		}
+
+
+		m[el].first=1;
+		m[el].second=i;
+  		pr(count,start);
+  	}
+  	cout<<n*(n+1)/2 - count;
   
+
 }

@@ -65,10 +65,32 @@ template <class T> ostream &operator <<(ostream &os, const vector<T> &p) {os << 
 int32_t main()
 {
     ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-    #ifndef ONLINE_JUDGE 
-        freopen("../input.txt", "r", stdin); 
-        freopen("../output.txt", "w", stderr); 
-        freopen("../output.txt", "a", stdout); 
-    #endif 
-  
+        freopen("./compans.txt", "w", stdout); 
+        freopen("./compare.txt", "r", stdin); 
+        int n;
+        cin>>n;
+        vector<string> v(n);
+        for(int i=0; i<n; i++)
+        	cin>>v[i];
+        ifstream fin;
+        fin.open("./output.txt");
+        vector<string> a;
+        string line;
+        while(fin)
+        {
+        	getline(fin,line);
+        	a.pb(line);
+		}
+        
+        fin.close();
+        for(int i=0; i<n; i++)
+        {
+        	string k=a[i];
+        	reverse(all(k));
+        	if(sz(v[i])==sz(a[i]) and k==a[i])
+        		cout<<1<<endl;
+        	else
+        		cout<<"lol"<<endl;
+        }
+  	
 }

@@ -70,5 +70,27 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+    int t;
+    cin>>t;
+    while(t--)
+    {
+    	int flag=1;
+    	int n;
+    	cin>>n;
+    	invec(v,n);
+    	// pr(*maxof(v));
+    	int m = *maxof(v);
+    	for(int i=0;i<n; i++)
+    	{
+    		if((m-v[i])%2==1)
+    		{
+    			cout<<"NO";
+    			flag=0;
+    			break;
+    		}
+    	}
+    	if(flag)
+    		cout<<"YES";
+    	cout<<endl;
+    }
 }

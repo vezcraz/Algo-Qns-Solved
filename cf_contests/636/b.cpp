@@ -70,5 +70,37 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
+    int t;
+    cin>>t;
+
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        if(n%4==0)
+        {
+            int x=n/2;
+            cout<<"YES"<<endl;
+            int even=0;
+            for(int i=2; i<=n ;i+=2){
+                even+=i;
+                cout<<i<<" ";
+            }
+            int odd=0;
+            for(int i=1; i<n-2; i+=2){
+                odd+=i;
+                cout<<i<<" ";
+            }
+            cout<<even-odd<<" ";
+            goto yes;
+
+        }
+        no:
+            cout<<"NO"<<endl;
+            continue;
+        yes:
+        cout<<endl;
+        continue;
+    }
   
 }

@@ -70,5 +70,15 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+  	tc(t)
+    {
+        int n, a, b;
+        cin>>n>>a>>b;
+        for(int i=0; i<n; i++)
+        {
+            cout<<(char)('a'+i%b);
+        }
+        cout<<endl;
+    }
+
 }

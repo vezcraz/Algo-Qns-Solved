@@ -70,5 +70,59 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
+    int n;
+    cin>>n;
+    invec(v,n);
+    int even=0, oddd=0;
+    vi a, b;
+    if(n==1)
+    {
+        cout<<1;
+        return 0;
+    }
+    for(int i=0; i<n; i++)
+    {
+        if(i%2==0)
+            a.pb(v[i]);
+        else
+            b.pb(v[i]);
+    }
+    pr(a,b);
+    map<int,int> ma, mb;
+    int asum = sumof(a);
+    int bsum = sumof(b);
+    for(int i=0; i<sz(a); i++)
+    {
+        ma[i]=asum-a[i];
+        asum-=a[i];
+    }
+    for(int i=0; i<sz(b); i++)
+    {
+        mb[i]=bsum-b[i];
+        bsum-=b[i];
+    }    
+    pr(ma,mb);
+    int c=0;
+    asum = sumof(a);
+    bsum = sumof(b);
+    for(int i=0; i<sz(a); i++)
+    {
+
+        int esum = bsum-mb[i]-((i<sz(b))?b[i]:0)+ma[i];
+        int osum = asum-ma[i]-a[i]+mb[i]+((i<sz(b))?b[i]:0);
+        pr(esum,osum);
+        if(esum==osum)
+            c++;
+    }
+    for(int i=0; i<sz(b); i++)
+    {
+        int esum = asum-ma[i]+mb[i];
+        int osum = bsum-mb[i]-b[i]+ma[i];
+        pr(esum,osum);
+        if(esum==osum)
+            c++;
+    }
+    cout<<c<<endl;
+
   
 }

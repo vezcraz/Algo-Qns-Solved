@@ -70,5 +70,36 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
+	tc(t)
+	{
+		int n, x;
+		cin>>n>>x;
+
+		invec(v,n);
+		sort(all(v));
+		map<int,int> m;
+		for(int a: v)
+			m[a]=1;
+		int i=1;
+
+		while(x!=0)
+		{
+
+			if(!m[i])
+			{
+				m[i]=1;
+				x--;
+			}
+			i++;
+		}
+		int j;
+		for( j=i-1; j<300; j++)
+		{
+			if(!m[j])
+				break;
+
+		}
+		cout<<j-1<<endl;
+	}                                                                                                                
   
 }

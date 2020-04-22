@@ -70,5 +70,25 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
+    tc(t)
+    {
+    	int x,n,m;
+        cin>>x>>n>>m;
+        while(n>0 and x>20)
+        {
+            x=x/2+10;
+            n--;
+        }
+        if(10*m>=x)
+            goto yes;
+        else
+            goto no;
+        no:
+            cout<<"NO"<<endl;
+            continue;
+        yes:
+            cout<<"YES"<<endl;
+            continue;
+    }
   
 }

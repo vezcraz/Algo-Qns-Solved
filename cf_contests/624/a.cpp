@@ -70,5 +70,35 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+  	tc(t)
+  	{
+  		int a,b;
+  		cin>>a>>b;
+
+  		if(a==b)
+  		{
+  			cout<<0<<endl;
+  			continue;
+  		}
+  		if(a>b)
+  		{
+  			int x = a-b;
+  			if(x%2==0)
+  			{
+  				cout<<1<<endl;
+  			}
+  			else
+  				cout<<2<<endl;
+  			continue;
+  		}
+  		if(a<b)
+  		{
+  			int x = b-a;
+  			if(x%2!=0)
+  				cout<<1<<endl;
+  			else
+  				cout<<2<<endl;
+  			continue;
+  		}
+  	}
 }

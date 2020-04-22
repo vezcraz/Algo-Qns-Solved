@@ -70,5 +70,19 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+    int n;
+    cin>>n;
+    invec(v,n);
+    vi ans;
+    ans.pb(v[0]);
+    ans.pb(v[1]+ v[0]);
+    int maxina=max(ans[0],ans[1]);
+    for(int i=2; i<n; i++)
+    {
+    	ans.pb(v[i]+maxina);
+    	maxina=max(maxina,ans[i]);
+    }
+    for(int i=0; i<n; i++)
+    	cout<<ans[i]<<" ";
+    
 }

@@ -70,5 +70,38 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        invec(v,n);
+        int sum=0;
+        int flag=v[0]/abs(v[0]); 
+        vi loc;
+        for(int i=0; i<n; i++)
+        {
+            // cout<<flag*v[i];
+            if(flag*v[i] < 0)
+            {
+                flag=-flag;
+                loc.pb(i);
+            }
+        }
+        // pr(loc);
+        loc.pb(n);
+        int start=0;
+        for(int x :loc)
+        {
+            int mx=INT_MIN;
+            for(int i=start; i<x; i++)
+                mx=max(mx,v[i]);
+            start=x;
+            sum+=mx;
+        }
+        cout<<sum<<endl;
+        
+    }
   
 }

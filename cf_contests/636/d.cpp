@@ -70,5 +70,41 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+    tc(t)
+    {
+        int n,k;
+        cin>>n>>k;
+        invec(v,n);
+        vi lo(n);
+        vi hi(n);
+        int mn=INT_MIN,mx=INT_MAX;
+        for(int i=0; i<n/2; i++)
+        {
+            int a,b;
+            a=v[i];
+            b=v[n-1-i];
+            int l=min(a,b);
+            int h=max(a,b);
+            lo[i]= l+1;
+            hi[i] = k+h;
+            mn = max(mn,lo[i]);
+            mx= min(mx,hi[i]);
+        }
+
+        map<int,int> temp;
+        int mxx=INT_MIN;
+        int count=0;
+        for(int i=0; i<n/2; i++)
+        {
+            int a,b;
+            a=v[i];
+            b=v[n-1-i];
+            if((a+b)>=mn and (a+b)<=mx)
+                temp[a+b]++;
+            mxx=max(temp[a+b],mxx);
+        }
+        cout<<n/2-mxx<<endl;
+
+
+    }
 }

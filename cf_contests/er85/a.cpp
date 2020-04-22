@@ -70,5 +70,32 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+  	tc(t)
+  	{
+  		int n;
+  		cin>>n;
+  		vi a(n),b(n);
+  		for(int i=0; i<n; i++)
+  		{
+  			cin>>a[i]>>b[i];
+  		}
+  		if(a[0]<b[0])
+  			goto no;
+  		for(int i=1; i<n; i++)
+  		{
+  			if(a[i]<b[i])
+  				goto no;
+  			if(a[i]<a[i-1] or b[i]<b[i-1])
+  				goto no;
+  			if(a[i]-a[i-1]<b[i]-b[i-1])
+  				goto no;
+
+  		}
+  		yes:
+  			cout<<"YES"<<endl;
+  			continue;
+  		no:
+  			cout<<"NO"<<endl;
+  			continue;
+  	}
 }

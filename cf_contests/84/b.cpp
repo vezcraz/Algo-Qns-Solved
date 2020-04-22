@@ -70,5 +70,56 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+  	tc(t)
+  	{
+  		int n;
+  		cin>>n;
+  		vec<vec<int>> v(n);
+  		for(int i=0; i<n; i++)
+  		{
+  			int tot_princes;
+  			cin>>tot_princes;
+  			for(int j=0; j<tot_princes;j++)
+  			{
+  				int prince;
+  				cin>>prince;
+  				v[i].pb(prince);
+  			}
+  		}
+  		unordered_map<int,int> m;
+  		int unmarried=-1;
+  		for(int i=0; i<n; i++)
+  		{	
+
+  			int married=0;
+  			for(int j=0; j<v[i].size(); j++)
+  			{
+  				int x=v[i][j];
+  				if(m[x]==0)
+  				{
+  					m[x]++;
+  					married++;
+  					break;
+  				}
+  			}
+  			if(!married)
+  				unmarried=i;
+
+  		}
+  		if(unmarried!=-1)
+  		{	cout<<"IMPROVE\n";
+  			cout<<unmarried+1;
+	  		for(int i=1; i<=n ;i++)
+	  		{
+	  			if(m[i]==0){
+	  				cout<<" "<<i<<endl;break;
+	  			}
+
+	  		}
+		}
+		else
+			cout<<"OPTIMAL\n";
+
+
+  	}
 }

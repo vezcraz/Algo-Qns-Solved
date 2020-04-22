@@ -70,5 +70,38 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+  	tc(t)
+    {
+        
+        vector<string> v;
+        for(int i=0; i<9; i++)
+        {
+            string x;
+            cin>>x;
+            v.pb(x);
+        }
+        for(int i=0; i<9; i++)
+        {
+            for(int j=0; j<9; j++)
+            {
+                if( ((i==0) and (j==0))or ((i==1) and (j==3))or ((i==2) and (j==6))or 
+                    ((i==3) and (j==1))or ((i==4) and (j==4)) or ((i==5) and (j==7))or 
+                    ((i==6) and (j==2))or ((i==7) and (j==5))or ((i==8) and (j==8)))
+                {
+                    if(v[i][j]=='9')
+                        v[i][j]='1';
+                    else
+                        v[i][j]++;
+                    // v[i][j]='+';
+                }
+                cout<<v[i][j];
+            }
+            cout<<endl;
+        }
+            
+
+
+        
+    }
+
 }

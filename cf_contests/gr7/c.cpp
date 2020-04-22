@@ -14,7 +14,7 @@ typedef vector <pii> vpi ;
 typedef vector <pll> vpl ;
 #define umap unordered_map
 
-#define MOD 1000000007
+#define MOD 998244353
 #define vec vector
 #define nl '\n' << flush
 #define is ==
@@ -70,5 +70,39 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+  	int n, k;
+  	cin>>n>>k;
+  	invec(v,n);
+
+  	vi sorted = v;
+  	sort(sorted.rbegin(), sorted.rend());
+  	pr(sorted);
+  	int sum=0;
+  	for(int i=0;i<k; i++){
+  		sum+=sorted[i];
+  	}
+  	pr(sum);
+  	int hi=sorted[0];
+  	int lo=sorted[k-1];
+  	vi flag;
+  	for(int i=0; i<n; i++)
+  	{
+  		if(hi>=v[i] and lo<=v[i])
+  			flag.push_back(i);
+  	}
+  	pr(flag);
+  	vi dist;
+  	for(int i=0; i<-1+sz(flag);i++)
+  	{
+  		dist.pb(flag[i+1]-flag[i]);
+  	}
+  	pr(dist);
+  	int prod=1;
+  	for(int i=0; i<sz(dist); i++)
+  	{
+  		prod=((prod%MOD)*(dist[i]%MOD ))%MOD;
+  	}
+  	cout<<sum<<" "<<prod;
+
+
 }

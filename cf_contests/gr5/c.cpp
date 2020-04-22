@@ -70,5 +70,69 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+  	int n;
+    cin>>n;
+
+    vec<vi> v(n);
+    vec<pair<int,int>> ans;
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<3; j++)
+        {
+            int x;
+            cin>>x;
+            v[i].pb(x);
+        }
+    }
+    pr(v);
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            if(i==j)
+                continue;
+            vi a,b;
+            for(int k=0; k<3; k++)
+            {
+                a.pb(min(v[i][k], v[j][k]));
+                b.pb(max(v[i][k], v[j][k]));
+
+            }
+            pr(a,b);
+            vi flag={1,1,1};
+            int f=1;
+            for(int k=0; k<n; k++)
+            {
+                if(i!=k and j!=k)
+                {
+                    // pr(v[k]);
+                    for(int m=0; m<3; m++)
+                    {
+                        if(a[m]<=v[k][m] and b[m]>=v[k][m])
+                        {
+                            flag[m]=0;
+                        }
+                    }
+                    // pr(flag);
+                   vi x={0,0,0};
+                   if(x==flag)
+                    goto end;
+                    
+                }
+            }
+           
+                ans.pb({i+1, j+1});
+                v.erase(v.begin()+i);
+                v.erase(v.begin()+j);
+                n-=2;
+                i=-1;
+                j=-1;
+            pr(ans);
+            end:
+            {}
+
+
+        }
+    }
+    pr(ans);
 }

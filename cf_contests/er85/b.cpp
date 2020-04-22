@@ -69,6 +69,26 @@ int32_t main()
         freopen("../input.txt", "r", stdin); 
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
-    #endif 
+    #endif
+    tc(t)
+    {
+    	int n,x;
+    	cin>>n>>x;
+    	invec(v,n);
+    	sort(all(v));
+    	reverse(all(v));
+    	int sum=0;
+    	int mx=0;
+    	for(int i=0;i<n; i++)
+    	{
+    		sum+=v[i];
+    		// cout<<sum<<endl;
+    		if(sum/(i+1)>=x)
+    			mx=i+1;
+    		else
+    			break;
+    	}
+    	cout<<mx<<endl;
+    } 
   
 }

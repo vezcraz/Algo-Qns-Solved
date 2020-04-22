@@ -70,5 +70,35 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
+    tc(t)
+    {
+    	int n; 
+    	cin>>n;
+    	invec(v,n);
+    	vi prime={2,3,5,7,11,13,17,19,23,29,31};
+    	vi ans;
+    	map<int,int> colormap;
+    	// pr(v);
+    	int m=0;
+    	for(int i=0; i<n; i++)
+    	{
+    		for(int j=0; j<11; j++)
+    		{
+    			if(v[i]%prime[j]==0)
+    			{
+    				if(colormap[prime[j]]==0)
+    					colormap[prime[j]]=++m;
+    				
+    				ans.pb(colormap[prime[j]]);
+	    			break;
+	    		}
+    		}
+    	}
+    	cout<<m<<endl;
+    	for(int i=0; i<ans.size(); i++)
+    		cout<<ans[i]<<" ";
+    	cout<<endl;
+
+    }
   
 }

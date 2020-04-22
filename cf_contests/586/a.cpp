@@ -70,5 +70,22 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
+    int n;
+    cin>>n;
+    string s;
+    cin>>s;
+    int cr=0, cn=0;
+    for(int i=0; i<n; i++)
+    {
+    	if(s[i]=='r')
+    		cr++;
+    	else if(s[i]=='n')
+    		cn++;
+    }
+    for(int i=1;i<=cn; i++)
+    	cout<<1<<" ";
+    for(int i=1;i<=cr; i++)
+    	cout<<0<<" ";
+    
   
 }

@@ -70,5 +70,12 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
-  
+    tc(t)
+    {
+    	int n; 
+    	cin>>n;
+    	invec(v,n);
+    	set<int> x = set<int>(all(v));
+    	cout<<sz(x)<<endl;
+    }
 }

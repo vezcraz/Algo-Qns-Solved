@@ -70,5 +70,11 @@ int32_t main()
         freopen("../output.txt", "w", stderr); 
         freopen("../output.txt", "a", stdout); 
     #endif 
+    tc(t)
+    {
+    	int n; 
+    	cin>>n;
+    	cout<<1<<" "<<n-1<<endl;
+    }
   
 }
